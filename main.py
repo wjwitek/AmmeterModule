@@ -13,9 +13,9 @@ parser.add_argument("--port", type=str, help="enter virtual port, eg. COM14",
 port = parser.parse_args().port
 
 # establish connection via mavlink
-# master = mavutil.mavlink_connection(port)
-# master.wait_heartbeat()
-# master.mav.param_request_list_send(master.target_system, master.target_component)
+master = mavutil.mavlink_connection(port)
+master.wait_heartbeat()
+master.mav.param_request_list_send(master.target_system, master.target_component)
 
 # create window layout
 sg.ChangeLookAndFeel('SandyBeach')
@@ -40,11 +40,9 @@ while True:
     time.sleep(0.1)
     # try reading value via mavlink
     try:
-        # message = master.recv_match(type='SYS_STATUS', blocking=True).to_dict()
-        # voltage = message['voltage_battery'] / 1000
-        # raw_current = message['current_battery'] / 100
-        voltage = random()
-        raw_current = random()
+        message = master.recv_match(type='SYS_STATUS', blocking=True).to_dict()
+        voltage = message['voltage_battery'] / 1000
+        raw_current = message['current_battery'] / 100
         current = recalculate_current(raw_current)
     except Exception as error:
         print(error)
