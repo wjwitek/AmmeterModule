@@ -1,16 +1,9 @@
 # Ammeter module documentation
-Module handling extracting voltage and current of batteries connected to pichawk via mavlink. Works on Windows only!
+Module handling extracting voltage and current of batteries connected to pichawk via mavlink.
+## Requirements
+- Computer with Windows
+- Installed Mission Planner and Python3
 ## Installation
-Clone git repository
-#### Python
-1. Download and install Python (https://www.python.org/downloads/)
-2. Create virtual environment using command prompt
-```
-python3 -m ammeter \path\to\new\virtual\environment
-```
-3. Activate virtual environment
-```
-cd \path\to\new\virtual\environment\Scripts
-activate.bat
-```
-4. Install 
+1. Download com0com binary (https://sourceforge.net/projects/com0com/)
+2. Install com0com. Select CNCA0 <-> CNCB0 and COM# <-> COM# components.
+3. Run com0com and create 2 viratual COM-CNC ports pairs. 
