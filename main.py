@@ -7,7 +7,7 @@ import os
 from datetime import datetime
 from pathlib import Path
 
-DEFAULT_PATH = os.path.join(os.getcwd(), "logs")
+DEFAULT_PATH = os.path.join("logs")
 
 if __name__ == "__main__":
     # read command line argument
