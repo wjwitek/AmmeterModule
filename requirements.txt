@@ -1,4 +1,6 @@
-pysimplegui>=4.56.0
 pymavlink>=2.4.20
 lxml>=4.7.1
 future>=0.18.2
+matplotlib>=3.5.1
+pyqtgraph>=0.12.3
+pyqt5>=5.15.6

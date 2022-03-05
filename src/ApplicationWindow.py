@@ -8,13 +8,15 @@ from matplotlib.figure import Figure
 from matplotlib import animation
 from matplotlib.ticker import MaxNLocator
 from pymavlink.mavutil import mavserial
+from pathlib import Path
+import csv
 
 
 class ApplicationWindow(QtWidgets.QMainWindow):
     """
     Class defining main window of application, for simplicity basically everything happens here.
     """
-    def __init__(self, master: mavserial):
+    def __init__(self, master: mavserial, path: Path):
         """
         :param master: already connected mavserial
         """
@@ -23,6 +25,12 @@ class ApplicationWindow(QtWidgets.QMainWindow):
         self.setCentralWidget(self._main)
         layout = QtWidgets.QVBoxLayout(self._main)
         self.master = master
+
+        # prepare file for logs
+        self.log_path = path
+        with open(self.log_path, 'w') as f:
+            writer = csv.writer(f)
+            writer.writerow(["Time", "Voltage", "Current", "Raw current"])
 
         # add plot to layout
         self.fig = Figure()
@@ -65,7 +73,7 @@ class ApplicationWindow(QtWidgets.QMainWindow):
         Get newest data from pixhawk and update plot, voltage and current.
         :param i: not used, required by FuncAnimation
         """
-        voltage, current = get_data(self.master)
+        voltage, current = get_data(self.master, self.log_path)
 
         # update data in arrays
         self.times.pop(0)
