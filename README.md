@@ -17,7 +17,7 @@ pip install -r requirements.txt
 #### Setting up package splitter
 From command prompt go to folder containing hub4com.exe adn run:
 ```commandline
-hub4com.exe --octs=off --baud=<baudRate> \\.\COM12 \\.\CNCA0 \\.\CNCA1
+hub4com.exe --octs=off --route=0:1,2 --baud=<baudRate> \\.\COM12 \\.\CNCA0 \\.\CNCA1
 ```
 \<baudRate> - replace with baud rate, typically 57600<br/>
 COM12 - port to which pixhawk antenna is connected<br/>
